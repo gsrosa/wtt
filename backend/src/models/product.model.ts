@@ -20,8 +20,8 @@ class ProductModel {
 			created: { type: Date, default: new Date() },
 		});
 
-		//const db = await this.conn;
-		//db.model('product', productSchema, 'product');
+		const db = await this.conn;
+		db.model('product', productSchema, 'product');
 	}
 }
 

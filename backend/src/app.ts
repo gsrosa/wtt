@@ -2,7 +2,7 @@ import * as express from 'express';
 import * as parser from 'body-parser';
 import * as cors from 'cors';
 import * as morgan from 'morgan';
-const consign = require('consign');
+import * as consign from 'consign';
 
 class Express {
 	public app: any;
@@ -17,7 +17,7 @@ class Express {
 		this.app.use(cors());
 		this.app.use(morgan('dev'));
 
-		consign({ extensions: ['.ts'], cwd: 'src' })
+		consign({ extensions: ['.ts', '.js'] })
 			.include('config')
 			.then('models')
 			.then('routes')
