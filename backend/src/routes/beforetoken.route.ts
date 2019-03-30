@@ -1,6 +1,6 @@
 import { Application } from 'express';
 import { UserController } from '../modules/user/user.controller';
-class UserRoute {
+class BeforeToken {
 	app: Application;
 	controller: UserController;
 
@@ -11,8 +11,9 @@ class UserRoute {
 	}
 
 	private initRoute() {
-		this.app.route('/user/:id').put(this.controller.updateUser);
+		this.app.route('/login').post(this.controller.login);
+		this.app.route('/user').post(this.controller.insertUser);
 	}
 }
 
-export = (app: Application) => new UserRoute(app);
+export = (app: Application) => new BeforeToken(app);
