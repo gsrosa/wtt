@@ -12,10 +12,13 @@ class Mongodb {
 	async connect() {
 		return new Promise((resolve, reject) => {
 			const url = 'mongodb://localhost:27017/wtt';
-			mongoose
-				.connect(url, { useNewUrlParser: true })
-				.then(conn => resolve(conn))
-				.catch(err => reject(err));
+			mongoose.connect(url, { useNewUrlParser: true }, err =>
+				reject(err)
+			);
+
+			console.log('connect successful');
+
+			resolve(mongoose);
 		});
 	}
 }
