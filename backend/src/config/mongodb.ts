@@ -23,4 +23,4 @@ class Mongodb {
 	}
 }
 
-export default (app: Application) => new Mongodb(app);
+export = (app: Application) => new Mongodb(app);

@@ -13,4 +13,4 @@ class UserRoute {
 	}
 }
 
-export default (app: Application) => new UserRoute(app);
+export = (app: Application) => new UserRoute(app);

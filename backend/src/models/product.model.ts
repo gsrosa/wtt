@@ -1,6 +1,7 @@
 import { Application } from 'express';
 import { Schema } from 'mongoose';
-class UserModel {
+
+class ProductModel {
 	app: Application;
 	conn: any;
 
@@ -11,15 +12,17 @@ class UserModel {
 	}
 
 	async initialize() {
-		const UserSchema = new Schema({
+		const productSchema = new Schema({
 			name: { type: String, required: true },
-			email: { type: String, required: true, unique: true },
-			password: { type: String, required: true },
+			description: String,
+			picture: { type: String },
+			evaluation: { type: Number },
+			created: { type: Date, default: new Date() },
 		});
 
 		//const db = await this.conn;
-		//db.model('user', UserSchema, 'user');
+		//db.model('product', productSchema, 'product');
 	}
 }
 
-export = (app: Application) => new UserModel(app);
+export = (app: Application) => new ProductModel(app);

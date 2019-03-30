@@ -22,12 +22,6 @@ class Express {
 			.then('models')
 			.then('routes')
 			.into(this.app);
-
-		['config', 'models', 'routes'].map((d: string) => {
-			Object.keys(this.app[d]).map(k => {
-				this.app[d][k].default(this.app);
-			});
-		});
 	}
 }
 
