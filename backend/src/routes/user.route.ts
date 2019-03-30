@@ -1,4 +1,4 @@
-import { Application } from 'express';
+import { Application, Request, Response } from 'express';
 
 class UserRoute {
 	app: Application;
@@ -9,7 +9,9 @@ class UserRoute {
 	}
 
 	private initRoute() {
-		console.log('route initialized');
+		this.app
+			.route('/user')
+			.get((req: Request, res: Response) => res.send('ok'));
 	}
 }
 
