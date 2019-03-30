@@ -12,9 +12,16 @@ class ProductRoute {
 	}
 
 	private initRoute() {
-		this.app.route('/product').post(this.controller.insertProduct);
+		this.app
+			.route('/product')
+			.post(this.controller.insertProduct)
+			.get(this.controller.getProducts);
 
-		this.app.route('/product/:id').put(this.controller.updateProduct);
+		this.app
+			.route('/product/:id')
+			.put(this.controller.updateProduct)
+			.delete(this.controller.removeProduct)
+			.get(this.controller.getProductById);
 	}
 }
 

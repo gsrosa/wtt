@@ -1,6 +1,5 @@
 import { Application } from 'express';
 import { ProductModel } from './product.model';
-import { Product } from '../../models/product/product.interface';
 
 export class ProductController {
 	service: ProductModel;
@@ -27,6 +26,37 @@ export class ProductController {
 			const data: any = req.body;
 
 			const result = await this.service.updateProduct({ _id, data });
+			res.json(result);
+		} catch (err) {
+			res.status(400).send(err);
+		}
+	}
+
+	async removeProduct(req: any, res: any) {
+		try {
+			const _id: string = req.params['id'];
+
+			const result = await this.service.deleteProduct({ _id });
+			res.json(result);
+		} catch (err) {
+			res.status(400).send(err);
+		}
+	}
+
+	async getProducts(req: any, res: any) {
+		try {
+			const result = await this.service.findProduct();
+			res.json(result);
+		} catch (err) {
+			res.status(400).send(err);
+		}
+	}
+
+	async getProductById(req: any, res: any) {
+		try {
+			const id = req.params.id;
+
+			const result = await this.service.findProductById(id);
 			res.json(result);
 		} catch (err) {
 			res.status(400).send(err);

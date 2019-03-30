@@ -31,6 +31,18 @@ export class ProductModel {
 		return new Promise(fn);
 	}
 
+	async deleteProduct({ _id }) {
+		const db = await this.conn;
+		const model = db.model('product');
+
+		const fn = (resolve, reject) =>
+			model
+				.deleteOne({ _id })
+				.exec((err, doc) => (err ? reject(err) : resolve(doc)));
+
+		return new Promise(fn);
+	}
+
 	async findProduct() {
 		const db = await this.conn;
 		const model = db.model('product');
