@@ -1,4 +1,5 @@
 import { Application } from 'express';
+import { verify } from 'jsonwebtoken';
 
 class TokenRoute {
 	app: Application;
@@ -9,10 +10,12 @@ class TokenRoute {
 
 	midleware() {
 		this.app.use('/*', (req, res, next) => {
-			if (req.header['x-access-token'] === undefined)
-				res.send('access denied');
+			const token = req.header['x-access-token'];
+			if (token === undefined) res.send('access denied');
 
-			next();
+			verify(token, this.app.get('secret'), (err, decoded) =>
+				err ? res.send('access denied') : next()
+			);
 		});
 	}
 }
