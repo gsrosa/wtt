@@ -1,9 +1,12 @@
 import { UserModel } from './user.model';
 import { Application } from 'express';
+import { sign } from 'jsonwebtoken';
 
 export class UserController {
+	app: Application;
 	service: UserModel;
 	constructor(app: Application) {
+		this.app = app;
 		this.service = new UserModel(app);
 	}
 
@@ -13,7 +16,18 @@ export class UserController {
 
 			const result = await this.service.findUser({ email, password });
 
-			res.json(result);
+			const token = sign({ email }, this.app.get('secret'));
+
+			const { _id, name } = result;
+
+			const dataReturn = {
+				_id,
+				name,
+				email,
+				token,
+			};
+
+			res.json(dataReturn);
 		} catch (err) {
 			res.status(400).send(err);
 		}

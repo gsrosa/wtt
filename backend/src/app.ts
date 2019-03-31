@@ -17,6 +17,8 @@ class Express {
 		this.app.use(cors());
 		this.app.use(morgan('dev'));
 
+		this.app.set('secret', 'onlyasecretkey');
+
 		consign({ extensions: ['.ts', '.js'] })
 			.include('config')
 			.then('models')

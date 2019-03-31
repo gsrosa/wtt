@@ -42,6 +42,6 @@ export class UserModel {
 				resolve(doc);
 			});
 
-		return new Promise(fn);
+		return new Promise<User>(fn);
 	}
 }
