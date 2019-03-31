@@ -31,12 +31,12 @@ export class UserModel {
 		return new Promise(fn);
 	}
 
-	async findUser({ email, password }) {
+	async findUser({ email }) {
 		const db = await this.conn;
 		const model = db.model('user');
 
 		const fn = (resolve, reject) =>
-			model.findOne({ email, password }).exec((err, doc) => {
+			model.findOne({ email }).exec((err, doc) => {
 				if (err) return reject(err);
 				else if (doc === undefined) return reject(doc);
 				resolve(doc);

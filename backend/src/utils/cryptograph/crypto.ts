@@ -1,17 +1,16 @@
 import { hash, compare } from 'bcrypt';
 
-export abstract class Crypto {
-	private saltRounds = 10;
-
-	public async generateHash(text: String) {
+export class Crypto {
+	public static async generateHash(text: String) {
+		const saltRounds = 10;
 		return new Promise<String>((resolve, reject) =>
-			hash(text, this.saltRounds, (err, hash) =>
+			hash(text, saltRounds, (err, hash) =>
 				err ? reject(err) : resolve(hash)
 			)
 		);
 	}
 
-	public async compare(text: String, hash: String) {
+	public static async compare(text: String, hash: String) {
 		return new Promise<Boolean>((resolve, reject) =>
 			compare(text, hash, (err, res) =>
 				err ? reject(err) : resolve(res)

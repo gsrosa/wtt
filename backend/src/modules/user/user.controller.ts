@@ -1,6 +1,7 @@
 import { UserModel } from './user.model';
 import { Application } from 'express';
 import { sign } from 'jsonwebtoken';
+import { Crypto } from '../../utils/cryptograph/crypto';
 
 export class UserController {
 	app: Application;
@@ -12,12 +13,12 @@ export class UserController {
 
 	async login(req, res) {
 		try {
-			const { email, password } = req.body;
+			let { email, password } = req.body;
+			const result = await this.service.findUser({ email });
 
-			const result = await this.service.findUser({ email, password });
+			Crypto.compare(password, result.password);
 
 			const token = sign({ email }, this.app.get('secret'));
-
 			const { _id, name } = result;
 
 			const dataReturn = {
@@ -36,6 +37,7 @@ export class UserController {
 	async insertUser(req, res) {
 		try {
 			const data = req.body;
+			data.password = await Crypto.generateHash(data.password);
 
 			const result = await this.service.insertUser(data);
 
