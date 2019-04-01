@@ -22,8 +22,8 @@ class Express {
 		consign({ extensions: ['.ts', '.js'] })
 			.include('config')
 			.then('models')
-			.then('routes/beforetoken.route')
-			.then('routes/token.route')
+			.then('routes/beforetoken.route.js')
+			.then('routes/token.route.js')
 			.then('routes')
 			.into(this.app);
 	}
