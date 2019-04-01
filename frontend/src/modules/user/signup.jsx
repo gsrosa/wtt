@@ -28,6 +28,9 @@ const signupComponent = ({
   }
   return (
     <div className="row">
+      <div className="col s12 center-align">
+        <h4>Criar conta</h4>
+      </div>
       <form className="col s12" onSubmit={handleSubmit(insert(onSucess))}>
         <div className="row">
           <div className="input-field col s12">
@@ -55,7 +58,10 @@ const signupComponent = ({
             />
           </div>
           <div className="input-field col s12 right-align">
-            <button type="submit" class="waves-effect waves-light btn">
+            <button
+              type="submit"
+              class="waves-effect waves-light btn blue darken-2"
+            >
               Cadastrar
             </button>
           </div>
