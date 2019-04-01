@@ -10,10 +10,11 @@ class TokenRoute {
 
 	midleware() {
 		this.app.use('/*', (req, res, next) => {
-			const token = req.header['x-access-token'];
-			if (token === undefined) res.send('access denied');
+			const token = req.headers['x-access-token'];
+			console.log(token);
+			if (token === undefined) return res.send('access denied');
 
-			verify(token, this.app.get('secret'), (err, decoded) =>
+			return verify(token, this.app.get('secret'), (err, decoded) =>
 				err ? res.send('access denied') : next()
 			);
 		});

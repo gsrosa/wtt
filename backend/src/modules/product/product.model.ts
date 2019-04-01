@@ -12,6 +12,7 @@ export class ProductModel {
 		const model = db.model('product');
 
 		const product = new model(data);
+		console.log(product);
 
 		const fn = (resolve, reject) =>
 			product.save((err, doc) => (err ? reject(err) : resolve(doc)));

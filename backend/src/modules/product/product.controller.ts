@@ -14,9 +14,9 @@ export class ProductController {
 
 			const result = await this.service.insertProduct(data);
 
-			res.json(result);
+			return res.json(result);
 		} catch (err) {
-			res.status(400).json(err);
+			return res.status(400).json(err);
 		}
 	}
 
@@ -26,9 +26,9 @@ export class ProductController {
 			const data: any = req.body;
 
 			const result = await this.service.updateProduct({ _id, data });
-			res.json(result);
+			return res.json(result);
 		} catch (err) {
-			res.status(400).send(err);
+			return res.status(400).send(err);
 		}
 	}
 
@@ -37,18 +37,18 @@ export class ProductController {
 			const _id: string = req.params['id'];
 
 			const result = await this.service.deleteProduct({ _id });
-			res.json(result);
+			return res.json(result);
 		} catch (err) {
-			res.status(400).send(err);
+			return res.status(400).send(err);
 		}
 	}
 
 	async getProducts(req: any, res: any) {
 		try {
 			const result = await this.service.findProduct();
-			res.json(result);
+			return res.json(result);
 		} catch (err) {
-			res.status(400).send(err);
+			return res.status(400).send(err);
 		}
 	}
 
@@ -57,9 +57,9 @@ export class ProductController {
 			const id = req.params.id;
 
 			const result = await this.service.findProductById(id);
-			res.json(result);
+			return res.json(result);
 		} catch (err) {
-			res.status(400).send(err);
+			return res.status(400).send(err);
 		}
 	}
 }
