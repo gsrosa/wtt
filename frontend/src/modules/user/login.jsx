@@ -6,9 +6,11 @@ import { login } from "../../request/user/index"
 import {
   setLogged,
   setToken,
-  setUser
+  setUser,
+  loggedReducer
 } from "../../redux/reducers/user/user.reducer"
 import { modalClose } from "../../redux/reducers/modal/modal.reducer"
+import { listProduct } from "../../request/product/index"
 
 const signupComponent = ({
   handleSubmit,
@@ -16,8 +18,14 @@ const signupComponent = ({
   setLogged,
   setUser,
   setToken,
-  closeModal
+  closeModal,
+  list,
+  isLogged
 }) => {
+  React.useEffect(() => {
+    list()
+  }, [isLogged])
+
   const onSucess = response => {
     const { name, email, _id, token } = response.data
     setLogged(true)
@@ -56,13 +64,16 @@ const signupComponent = ({
   )
 }
 
-const mapStateToProps = state => ({})
+const mapStateToProps = state => ({
+  isLogged: loggedReducer(state)
+})
 const mapDispatchToProps = dispatch => ({
   login: onSuccess => values => login({ values, dispatch, onSuccess }),
   setLogged: value => setLogged({ dispatch, value }),
   setUser: value => setUser({ dispatch, value }),
   setToken: value => setToken({ dispatch, value }),
-  closeModal: id => modalClose({ dispatch, id })
+  closeModal: id => modalClose({ dispatch, id }),
+  list: () => listProduct({ dispatch })
 })
 export const Login = connect(
   mapStateToProps,

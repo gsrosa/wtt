@@ -7,10 +7,11 @@ import { Signup } from "../../modules/user/signup"
 import { Login } from "../../modules/user/login"
 import { signOut } from "../../redux/reducers/user/user.reducer"
 import { redirect } from "../../redux/main.redux"
+import { clearProduct } from "../../redux/reducers/product/product.reducer"
 
 export const NavComponent = ({ logged, openModal, signOut }) => (
   <Fragment>
-    <Navbar brand={<a>Wtt</a>} alignLinks="right">
+    <Navbar brand={<a>Wtt</a>} alignLinks="right" className="blue darken-2">
       {!logged && (
         <NavItem onClick={e => openModal("signUpModal")}>Cadastrar</NavItem>
       )}
@@ -31,7 +32,10 @@ export const NavComponent = ({ logged, openModal, signOut }) => (
 const mapStateToProps = state => ({})
 const mapDispatchToProps = dispatch => ({
   openModal: id => modalOpen({ dispatch, id }),
-  signOut: e => signOut({ dispatch })
+  signOut: e => {
+    signOut({ dispatch })
+    clearProduct({ dispatch })
+  }
 })
 
 export const Nav = connect(

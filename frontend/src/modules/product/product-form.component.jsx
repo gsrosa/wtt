@@ -35,7 +35,9 @@ const productForm = ({ handleSubmit, insert }) => {
           />
         </Col>
         <Col s={12} className="right-align">
-          <Button type="submit">Inserir</Button>
+          <Button type="submit" className="blue darken-2">
+            Inserir
+          </Button>
         </Col>
       </form>
     </Row>
