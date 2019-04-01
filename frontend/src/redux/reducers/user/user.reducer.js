@@ -1,4 +1,9 @@
-import { SET_TOKEN, SET_USER, LOG_USER } from "../../actions/user/user.action"
+import {
+  SET_TOKEN,
+  SET_USER,
+  LOG_USER,
+  SIGN_OUT
+} from "../../actions/user/user.action"
 
 const userStorage = localStorage.getItem("user")
 const tokenStorage = localStorage.getItem("token")
@@ -18,6 +23,8 @@ export const user = (state = initialState, action) => {
       return { ...state, user: action.payload }
     case LOG_USER:
       return { ...state, logged: action.payload }
+    case SIGN_OUT:
+      return { ...state, logged: false, token: undefined, user: undefined }
     default:
       return { ...state }
   }
@@ -34,6 +41,10 @@ export const setToken = ({ dispatch, value }) => {
 export const setUser = ({ dispatch, value }) => {
   localStorage.setItem("user", value)
   dispatch({ type: SET_TOKEN, payload: value })
+}
+export const signOut = ({ dispatch }) => {
+  localStorage.clear()
+  dispatch({ type: SIGN_OUT, payload: undefined })
 }
 
 export const loggedReducer = state => state.user.logged
