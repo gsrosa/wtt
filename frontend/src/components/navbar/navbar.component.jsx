@@ -4,6 +4,7 @@ import { Navbar, NavItem } from "react-materialize"
 import Modal from "../../components/modal/modal.component"
 import { modalOpen } from "../../redux/reducers/modal/modal.reducer"
 import { Signup } from "../../modules/user/signup"
+import { Login } from "../../modules/user/login"
 import { signOut } from "../../redux/reducers/user/user.reducer"
 
 export const NavComponent = ({ logged, openModal, signOut }) => (
@@ -15,11 +16,11 @@ export const NavComponent = ({ logged, openModal, signOut }) => (
       {!logged && (
         <NavItem onClick={e => openModal("loginModal")}>Login</NavItem>
       )}
-      {logged && <NavItem>Minha conta</NavItem>}
+      {logged && <NavItem>Inserir produto</NavItem>}
       {logged && <NavItem>Produtos</NavItem>}
       {logged && <NavItem onClick={signOut}>Sair</NavItem>}
     </Navbar>
-    <Modal id="loginModal" />
+    <Modal id="loginModal" content={<Login />} />
     <Modal id="signUpModal" content={<Signup />} />
   </Fragment>
 )

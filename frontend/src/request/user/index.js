@@ -17,3 +17,21 @@ export const insertUser = ({ values, dispatch, onSuccess }) => {
     })
   )
 }
+
+export const login = ({ values, dispatch, onSuccess }) => {
+  const url = "/login"
+  return dispatch(
+    createApiRequest({
+      type: "USER",
+      url,
+      data: values,
+      method: "POST",
+      success: response => {
+        onSuccess(response)
+      },
+      fail: response => {
+        console.log(response)
+      }
+    })
+  )
+}
