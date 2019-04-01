@@ -11,7 +11,9 @@ class UserRoute {
 	}
 
 	private initRoute() {
-		this.app.route('/user/:id').put(this.controller.updateUser);
+		this.app
+			.route('/user/:id')
+			.put((req, res) => this.controller.updateUser(req, res));
 	}
 }
 

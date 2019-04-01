@@ -5,10 +5,12 @@ import { Crypto } from '../../utils/cryptograph/crypto';
 
 export class UserController {
 	app: Application;
-	service: UserModel;
+	private service: UserModel;
+
 	constructor(app: Application) {
 		this.app = app;
 		this.service = new UserModel(app);
+		return this;
 	}
 
 	async login(req, res) {
@@ -30,6 +32,7 @@ export class UserController {
 
 			res.json(dataReturn);
 		} catch (err) {
+			console.log(err);
 			res.status(400).send(err);
 		}
 	}
@@ -43,6 +46,7 @@ export class UserController {
 
 			res.json(result);
 		} catch (err) {
+			console.log(err);
 			res.status(400).send(err);
 		}
 	}

@@ -13,9 +13,10 @@ class Express {
 	}
 
 	private initialize() {
-		this.app.use(parser.urlencoded({ extended: true }));
 		this.app.use(cors());
-		this.app.use(morgan('dev'));
+		this.app.use(morgan('combined'));
+		this.app.use(parser.urlencoded({ extended: true }));
+		this.app.use(parser.json());
 
 		this.app.set('secret', 'onlyasecretkey');
 

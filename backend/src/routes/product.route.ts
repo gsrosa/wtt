@@ -14,14 +14,14 @@ class ProductRoute {
 	private initRoute() {
 		this.app
 			.route('/product')
-			.post(this.controller.insertProduct)
-			.get(this.controller.getProducts);
+			.post((req, res) => this.controller.insertProduct(req, res))
+			.get((req, res) => this.controller.getProducts(req, res));
 
 		this.app
 			.route('/product/:id')
-			.put(this.controller.updateProduct)
-			.delete(this.controller.removeProduct)
-			.get(this.controller.getProductById);
+			.put((req, res) => this.controller.updateProduct(req, res))
+			.delete((req, res) => this.controller.removeProduct(req, res))
+			.get((req, res) => this.controller.getProductById(req, res));
 	}
 }
 

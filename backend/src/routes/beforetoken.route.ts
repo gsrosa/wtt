@@ -11,8 +11,12 @@ class BeforeToken {
 	}
 
 	private initRoute() {
-		this.app.route('/login').post(this.controller.login);
-		this.app.route('/user').post(this.controller.insertUser);
+		this.app
+			.route('/login')
+			.post((req, res) => this.controller.login(req, res));
+		this.app
+			.route('/user')
+			.post((req, res) => this.controller.insertUser(req, res));
 	}
 }
 

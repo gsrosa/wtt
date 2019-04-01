@@ -8,7 +8,7 @@ export class ProductController {
 		return this;
 	}
 
-	async insertProduct(req: Request, res: any) {
+	async insertProduct(req: any, res: any) {
 		try {
 			const data: any = req.body;
 

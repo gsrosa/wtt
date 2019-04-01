@@ -5,9 +5,11 @@ export class UserModel {
 	conn: any;
 	constructor(app: Application) {
 		this.conn = app.get('connection');
+		return this;
 	}
 
 	async insertUser(data: User) {
+		console.log(data);
 		const db = await this.conn;
 		const model = db.model('user');
 

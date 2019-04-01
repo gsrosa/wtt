@@ -11,7 +11,7 @@ export const RenderInput = ({
   ...rest
 }) => (
   <Fragment>
-    <label for="last_name">{label}</label>
+    <label>{label}</label>
     <input
       {...input}
       {...rest}
@@ -22,7 +22,7 @@ export const RenderInput = ({
       type={type}
     />
     {meta && (
-      <span class="helper-text" data-error="wrong" data-success="right">
+      <span className="helper-text" data-error="wrong" data-success="right">
         {meta.error}
       </span>
     )}

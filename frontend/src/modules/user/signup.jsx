@@ -11,7 +11,7 @@ const signupComponent = ({ handleSubmit, insert }) => {
         <div className="row">
           <div className="input-field col s12">
             <Field
-              name="nome"
+              name="name"
               component={RenderInput}
               type="text"
               label="Nome"
@@ -19,15 +19,15 @@ const signupComponent = ({ handleSubmit, insert }) => {
           </div>
           <div className="input-field col s12">
             <Field
-              name="Email"
+              name="email"
               component={RenderInput}
-              type="text"
+              type="email"
               label="Email"
             />
           </div>
           <div className="input-field col s12">
             <Field
-              name="Senha"
+              name="password"
               component={RenderInput}
               type="password"
               label="Senha"
