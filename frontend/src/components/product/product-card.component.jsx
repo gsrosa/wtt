@@ -12,8 +12,8 @@ export const CardProduct = ({ product, isLogged, onDelete, onEdit }) => (
       </div>
       <div class="card-content col s12">
         <div className="row card-title activator grey-text text-darken-4">
-          <div className="col s11 truncate">{product.name}</div>
-          <div className="col s1">
+          <div className="col s10 truncate">{product.name}</div>
+          <div className="col s2">
             <i class="material-icons right">more_vert</i>
           </div>
         </div>
