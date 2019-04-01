@@ -45,7 +45,7 @@ const signupComponent = ({
               label="Senha"
             />
           </div>
-          <div className="input-field col s12">
+          <div className="input-field col s12 right-align">
             <button type="submit" class="waves-effect waves-light btn">
               Entrar
             </button>
