@@ -7,7 +7,15 @@ const productForm = () => {
   return (
     <form className="row input-field">
       <div className="col s12">
-        <Field name="name" component={RenderInput} type="text" />
+        <Field name="name" component={RenderInput} type="text" label="Nome" />
+      </div>
+      <div className="col s12">
+        <Field
+          name="description"
+          component={RenderInput}
+          label="Descrição"
+          textarea
+        />
       </div>
     </form>
   )

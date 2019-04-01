@@ -6,6 +6,7 @@ import { modalOpen } from "../../redux/reducers/modal/modal.reducer"
 import { Signup } from "../../modules/user/signup"
 import { Login } from "../../modules/user/login"
 import { signOut } from "../../redux/reducers/user/user.reducer"
+import { redirect } from "../../redux/main.redux"
 
 export const NavComponent = ({ logged, openModal, signOut }) => (
   <Fragment>
@@ -16,8 +17,10 @@ export const NavComponent = ({ logged, openModal, signOut }) => (
       {!logged && (
         <NavItem onClick={e => openModal("loginModal")}>Login</NavItem>
       )}
-      {logged && <NavItem>Inserir produto</NavItem>}
-      {logged && <NavItem>Produtos</NavItem>}
+      {logged && (
+        <NavItem onClick={e => redirect("/product")}>Inserir produto</NavItem>
+      )}
+      {logged && <NavItem onClick={e => redirect("/")}>Produtos</NavItem>}
       {logged && <NavItem onClick={signOut}>Sair</NavItem>}
     </Navbar>
     <Modal id="loginModal" content={<Login />} />
