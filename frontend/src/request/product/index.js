@@ -36,3 +36,38 @@ export const listProduct = ({ dispatch }) => {
     })
   )
 }
+
+export const update = ({ dispatch, id, onSuccess, values }) => {
+  const url = "/product/" + id
+  return dispatch(
+    createApiRequest({
+      type: "PRODUCT",
+      url,
+      data: values,
+      method: "PUT",
+      success: response => {
+        onSuccess(response)
+      },
+      fail: response => {
+        console.log(response)
+      }
+    })
+  )
+}
+
+export const deleteProduct = ({ dispatch, id, onSuccess }) => {
+  const url = "/product/" + id
+  return dispatch(
+    createApiRequest({
+      type: "PRODUCT",
+      url,
+      method: "DELETE",
+      success: response => {
+        onSuccess(response)
+      },
+      fail: response => {
+        console.log(response)
+      }
+    })
+  )
+}

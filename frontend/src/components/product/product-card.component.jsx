@@ -1,7 +1,7 @@
 import React, { Fragment } from "react"
 import { Button } from "react-materialize"
 
-export const CardProduct = ({ product, isLogged }) => (
+export const CardProduct = ({ product, isLogged, onDelete, onEdit }) => (
   <div class="col s12 m6 l4">
     <div class="card">
       <div class="card-image waves-effect waves-block waves-light">
@@ -28,8 +28,12 @@ export const CardProduct = ({ product, isLogged }) => (
           {isLogged ? (
             <Fragment>
               <div className="flex-between">
-                <Button className="blue darken-2">Editar</Button>
-                <Button className="red">Excluir</Button>
+                <Button className="blue darken-2" onClick={onEdit}>
+                  Editar
+                </Button>
+                <Button className="red" onClick={onDelete}>
+                  Excluir
+                </Button>
               </div>
               <p>Descrição: {product.description}</p>
             </Fragment>
