@@ -18,7 +18,7 @@ export class UserModel {
 		const fn = (resolve, reject) =>
 			user.save((err, doc) => (err ? reject(err) : resolve(doc)));
 
-		return new Promise(fn);
+		return new Promise<User>(fn);
 	}
 
 	async updateUser({ _id, data }) {

@@ -1,6 +1,6 @@
 import { createApiRequest } from "../../redux/actions/api/api.action"
 
-export const insertUser = ({ values, dispatch }) => {
+export const insertUser = ({ values, dispatch, onSuccess }) => {
   const url = "/user"
   return dispatch(
     createApiRequest({
@@ -9,7 +9,7 @@ export const insertUser = ({ values, dispatch }) => {
       data: values,
       method: "POST",
       success: response => {
-        console.log(response)
+        onSuccess(response)
       },
       fail: response => {
         console.log(response)

@@ -43,8 +43,10 @@ export class UserController {
 			data.password = await Crypto.generateHash(data.password);
 
 			const result = await this.service.insertUser(data);
+			const { email, _id, name } = result;
+			const token = sign({ email }, this.app.get('secret'));
 
-			res.json(result);
+			res.json({ email, _id, name, token });
 		} catch (err) {
 			console.log(err);
 			res.status(400).send(err);
