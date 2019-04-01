@@ -1,19 +1,38 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { connect } from "react-redux"
 import { reduxForm, Field } from "redux-form"
 import { RenderInput } from "../../redux/form/renderInput"
 import { RenderRange } from "../../redux/form/renderRange"
 import { Button, Row, Col } from "react-materialize"
-import { insertProduct } from "../../request/product/index"
+import {
+  insertProduct,
+  update,
+  listProductId
+} from "../../request/product/index"
 
-const productForm = ({ handleSubmit, insert }) => {
+const productForm = ({
+  handleSubmit,
+  insert,
+  updateProduct,
+  match,
+  getProductById
+}) => {
+  const id = match.params.id
+
+  useEffect(() => {
+    getProductById(id)
+  }, [])
+
   const onSuccess = response => {
-    alert("Produto cadastrado com sucesso")
+    id ? alert("Produto cadastrado com sucesso") : alert("alterado com sucesso")
   }
+
+  const submit = () =>
+    id === undefined ? insert(onSuccess) : updateProduct(onSuccess, id)
 
   return (
     <Row>
-      <form className="input-field" onSubmit={handleSubmit(insert(onSuccess))}>
+      <form className="input-field" onSubmit={handleSubmit(submit())}>
         <Col s={12} m={6}>
           <Field name="name" component={RenderInput} type="text" label="Nome" />
         </Col>
@@ -35,7 +54,7 @@ const productForm = ({ handleSubmit, insert }) => {
           />
         </Col>
         <Col s={12} className="right-align">
-          <Button type="submit" className="blue darken-2">
+          <Button type="submit" className=" light-green darken-1">
             Inserir
           </Button>
         </Col>
@@ -46,10 +65,13 @@ const productForm = ({ handleSubmit, insert }) => {
 
 const mapStateToProps = state => ({})
 const mapDispatchToProps = dispatch => ({
-  insert: onSuccess => values => insertProduct({ values, dispatch, onSuccess })
+  insert: onSuccess => values => insertProduct({ values, dispatch, onSuccess }),
+  updateProduct: (onSuccess, id) => values =>
+    update({ values, dispatch, onSuccess, id }),
+  getProductById: id => listProductId({ dispatch, id })
 })
 
 export const ProductFormComponent = connect(
   mapStateToProps,
   mapDispatchToProps
-)(reduxForm({ form: "productForm" })(productForm))
+)(reduxForm({ form: "productForm", enableReinitialize: true })(productForm))

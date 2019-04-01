@@ -1,5 +1,8 @@
 import { createApiRequest } from "../../redux/actions/api/api.action"
-import { setFetchProduct } from "../../redux/reducers/product/product.reducer"
+import {
+  setFetchProduct,
+  setFetchProductId
+} from "../../redux/reducers/product/product.reducer"
 
 export const insertProduct = ({ values, dispatch, onSuccess }) => {
   const url = "/product"
@@ -29,6 +32,23 @@ export const listProduct = ({ dispatch }) => {
       method: "GET",
       success: response => {
         setFetchProduct({ dispatch, value: response.data })
+      },
+      fail: response => {
+        console.log(response)
+      }
+    })
+  )
+}
+
+export const listProductId = ({ dispatch, id }) => {
+  const url = "/product/" + id
+  return dispatch(
+    createApiRequest({
+      type: "PRODUCT",
+      url,
+      method: "GET",
+      success: response => {
+        setFetchProductId({ dispatch, value: response.data })
       },
       fail: response => {
         console.log(response)
