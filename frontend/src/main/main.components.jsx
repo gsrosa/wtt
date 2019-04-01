@@ -8,7 +8,9 @@ const MainComponent = ({ logged, user }) => {
   return (
     <Fragment>
       <Nav logged={logged} />
-      <Routes />
+      <div className="container">
+        <Routes />
+      </div>
     </Fragment>
   )
 }

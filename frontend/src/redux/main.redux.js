@@ -5,6 +5,7 @@ import { composeWithDevTools } from "redux-devtools-extension"
 import { reducer as formReducer } from "redux-form"
 import { reducers } from "./reducers/index"
 import api from "./middlewares/api.middleware"
+import { push } from "connected-react-router"
 
 export const history = createBrowserHistory()
 
@@ -19,3 +20,5 @@ const rootReducer = combineReducers({
 })
 
 export const store = createStore(rootReducer, middlewares)
+
+export const redirect = to => store.dispatch(push(to))
