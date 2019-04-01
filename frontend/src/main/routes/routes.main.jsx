@@ -7,5 +7,6 @@ export const Routes = ({}) => (
   <Switch>
     <Route path="/" exact strict component={ProductComponent} />
     <Route path="/product" exact strict component={ProductFormComponent} />
+    <Route path="/product/:id" exact strict component={ProductFormComponent} />
   </Switch>
 )
