@@ -9,6 +9,7 @@ import {
   update,
   listProductId
 } from "../../request/product/index"
+import { getFetchedProductId } from "../../redux/reducers/product/product.reducer"
 
 const productForm = ({
   handleSubmit,
@@ -24,7 +25,9 @@ const productForm = ({
   }, [])
 
   const onSuccess = response => {
-    id ? alert("Produto cadastrado com sucesso") : alert("alterado com sucesso")
+    id === undefined
+      ? alert("Produto cadastrado com sucesso")
+      : alert("alterado com sucesso")
   }
 
   const submit = () =>
@@ -55,7 +58,7 @@ const productForm = ({
         </Col>
         <Col s={12} className="right-align">
           <Button type="submit" className=" light-green darken-1">
-            Inserir
+            {id === undefined ? "Inserir" : "Atualizar"}
           </Button>
         </Col>
       </form>
@@ -63,7 +66,10 @@ const productForm = ({
   )
 }
 
-const mapStateToProps = state => ({})
+const mapStateToProps = state => ({
+  initialValues: getFetchedProductId(state)
+})
+
 const mapDispatchToProps = dispatch => ({
   insert: onSuccess => values => insertProduct({ values, dispatch, onSuccess }),
   updateProduct: (onSuccess, id) => values =>

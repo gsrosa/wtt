@@ -14,7 +14,7 @@ export const product = (state = initialState, action) => {
     case SET_FETCHED_PRODUCT:
       return { ...state, listed: action.payload }
     case SET_FETCHED_PRODUCT_ID:
-      return { ...state, listed: action.payload }
+      return { ...state, id: action.payload }
     case CLEAR_PRODUCT:
       return { ...state, listed: [] }
     default:

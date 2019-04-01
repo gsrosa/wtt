@@ -11,7 +11,6 @@ class TokenRoute {
 	midleware() {
 		this.app.use('/*', (req, res, next) => {
 			const token = req.headers['x-access-token'];
-			console.log(token);
 			if (token === undefined) return res.send('access denied');
 
 			return verify(token, this.app.get('secret'), (err, decoded) =>

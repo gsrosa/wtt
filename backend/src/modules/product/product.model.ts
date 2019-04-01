@@ -1,5 +1,6 @@
 import { Application } from 'express';
 import { Product } from '../../models/product/product.interface';
+import * as mongoose from 'mongoose';
 
 export class ProductModel {
 	conn: any;
@@ -24,9 +25,11 @@ export class ProductModel {
 		const db = await this.conn;
 		const model = db.model('product');
 
+		const { name, evaluation, description } = data;
+
 		const fn = (resolve, reject) =>
 			model
-				.updateOne({ _id }, { data })
+				.updateOne({ _id }, { $set: { name, evaluation, description } })
 				.exec((err, doc) => (err ? reject(err) : resolve(doc)));
 
 		return new Promise(fn);
@@ -60,7 +63,7 @@ export class ProductModel {
 
 		const fn = (resolve, reject) =>
 			model
-				.find({ _id })
+				.findOne({ _id })
 				.exec((err, doc) => (err ? reject(err) : resolve(doc)));
 
 		return new Promise(fn);
