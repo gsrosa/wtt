@@ -2,11 +2,12 @@ import React, { Fragment } from "react"
 import { connect } from "react-redux"
 import { Field, reduxForm } from "redux-form"
 import { RenderInput } from "../../redux/form/renderInput"
+import { insertUser } from "../../request/user/index"
 
-const signupComponent = ({ handleSubmit }) => {
+const signupComponent = ({ handleSubmit, insert }) => {
   return (
     <div className="row">
-      <form className="col s12">
+      <form className="col s12" onSubmit={handleSubmit(insert)}>
         <div className="row">
           <div className="input-field col s12">
             <Field
@@ -44,7 +45,9 @@ const signupComponent = ({ handleSubmit }) => {
 }
 
 const mapStateToProps = state => ({})
-const mapDispatchToProps = dispatch => ({})
+const mapDispatchToProps = dispatch => ({
+  insert: values => insertUser({ values, dispatch })
+})
 export const Signup = connect(
   mapStateToProps,
   mapDispatchToProps

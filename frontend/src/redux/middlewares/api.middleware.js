@@ -35,7 +35,7 @@ const api = ({ getState, dispatch }) => next => async action => {
           "Access-Control-Allow-Methods": "*",
           lang: "pt-br",
           "x-application-type": "application/json",
-          "x-access-token": getState().session.token,
+          "x-access-token": getState().user.token,
           crossDomain: true,
 
           ...headers
