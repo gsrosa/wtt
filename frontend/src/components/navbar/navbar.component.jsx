@@ -4,11 +4,16 @@ import { Navbar, NavItem } from "react-materialize"
 import Modal from "../../components/modal/modal.component"
 import { modalOpen } from "../../redux/reducers/modal/modal.reducer"
 
+import { Signup } from "../../modules/user/signup"
+
 export const NavComponent = ({ logged, openModal }) => (
   <Fragment>
     <Navbar brand={<a>Wtt</a>} alignLinks="right">
       {!logged ? (
-        <NavItem onClick={e => openModal("loginModal")}>Login</NavItem>
+        <Fragment>
+          <NavItem onClick={e => openModal("signUpModal")}>Cadastrar</NavItem>
+          <NavItem onClick={e => openModal("loginModal")}>Login</NavItem>
+        </Fragment>
       ) : (
         <Fragment>
           <NavItem>Minha conta</NavItem>
@@ -17,6 +22,7 @@ export const NavComponent = ({ logged, openModal }) => (
       )}
     </Navbar>
     <Modal id="loginModal" />
+    <Modal id="signUpModal" content={<Signup />} />
   </Fragment>
 )
 
